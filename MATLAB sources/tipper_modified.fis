@@ -1,0 +1,47 @@
+[System]
+Name='tipper'
+Type='mamdani'
+Version=2.0
+NumInputs=2
+NumOutputs=1
+NumRules=9
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='e'
+Range=[-10 10]
+NumMFs=3
+MF1='N':'trapmf',[-10 -10 -1.9 0.106]
+MF2='U':'trapmf',[-2 0 0 2]
+MF3='P':'trapmf',[0.0529 2.05 10 10]
+
+[Input2]
+Name='de/dt'
+Range=[-2 2]
+NumMFs=3
+MF1='N':'trapmf',[-2 -2 -0.3 0]
+MF3='U':'trapmf',[-0.3 0 0 0.3]
+MF4='P':'trapmf',[0 0.3 2 2]
+
+[Output1]
+Name='du'
+Range=[-1 1]
+NumMFs=3   
+MF1='N':'trimf',[-0.81 -0.8 -0.79]
+MF2='U':'trimf',[0 0 0]
+MF3='P':'trimf',[0.79 0.8 0.81]
+
+[Rules]
+1 1, 1 (1) : 1
+1 2 ,1 (1) : 1
+1 3 ,2 (1) : 1
+2 1 ,1 (1) : 1
+2 2 ,2 (1) : 1
+2 3 ,3 (1) : 1
+3 1 ,2 (1) : 1
+3 2 ,3 (1) : 1
+3 3 ,3 (1) : 1
